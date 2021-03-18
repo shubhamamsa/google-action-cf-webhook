@@ -1,0 +1,17 @@
+{
+  "name": "google-action-webhook",
+  "version": "1.0.0",
+  "description": "Webhook to handle google-action api request",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "author": "Shubham",
+  "license": "ISC",
+  "dependencies": {
+    "@assistant/conversation": "^3.4.0",
+    "axios": "^0.21.1",
+    "express": "^4.17.1"
+  }
+}
