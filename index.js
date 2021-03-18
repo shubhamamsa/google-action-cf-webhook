@@ -2,10 +2,13 @@ const express = require('express');
 const {conversation} = require('@assistant/conversation');
 const userData = require('./cf-api-req');
 
+//Set port
 const port = process.env.PORT || 3000;
 
+//Initialise google action conversation
 const assistant = conversation();
 
+//Filter the username
 let filter = str => {
     let final_str = '';
     for(let i=0;i<str.length;i++)    {
@@ -15,6 +18,7 @@ let filter = str => {
     return final_str;
 }
 
+//Updates user's username in user storage
 assistant.handle('update_username', async conv => {
     let userName = filter(conv.session.params.userName);
     await userData(userName).then(data => {
@@ -31,10 +35,12 @@ assistant.handle('update_username', async conv => {
         })
 });
 
+//Remove user's username from user storage
 assistant.handle('rm_username', async conv => {
     conv.user.params.userName = '!';
 });
 
+//Fetches the information
 assistant.handle('user_info', async conv => {
     let userName = conv.user.params.userName;
     await userData(userName).then(data => {
@@ -51,6 +57,7 @@ assistant.handle('user_info', async conv => {
     })
 });
 
+//Server
 const expressApp = express().use(express.json());
 expressApp.post('/fulfillment', assistant);
 expressApp.listen(port);
