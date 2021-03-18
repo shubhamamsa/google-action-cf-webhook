@@ -12,6 +12,7 @@
   "dependencies": {
     "@assistant/conversation": "^3.4.0",
     "axios": "^0.21.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "heroku": "^7.51.0"
   }
 }
